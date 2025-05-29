@@ -1,0 +1,114 @@
+/* 폰트 */
+@font-face {
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'ONE-Mobile-POP', sans-serif;
+}
+
+/* 배경을 전체화면으로 */
+.fullscreen-bg {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/EatBread_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 90vw;
+    margin-top: -100px; 
+}
+
+.logo-img {
+    width: 25vw;
+    max-width: 250px;
+    height: auto;
+}
+
+/* 버튼 그룹*/
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* 버튼 스타일 */
+.menu-button {
+    width: 150px;
+    height: 100px;
+    border: none;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    font-family: 'ONE-Mobile-POP', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.menu-button:hover {
+    background-color: rgba(255, 240, 200, 0.95);
+    transform: scale(1.05);
+}
+
+/* 반응형 */
+@media (max-width: 400px) {
+    .menu-button {
+        width: 120px;
+        height: 80px;
+        font-size: 16px;
+    }
+
+    .logo-img {
+        width: 430vw;
+    }
+}
+
+.creator {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-family: 'ONE-Mobile-POP', sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 그림자 */
+}
+
+#play-bgm-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    background-color: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+#play-bgm-btn:hover {
+    background-color: #666;
+}
