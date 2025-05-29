@@ -36,6 +36,15 @@ body, html {
     margin-top: -100px; 
 }
 
+.center-container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    max-width: 90vw;
+    margin-top: -100px; 
+}
+
 .logo-img {
     width: 25vw;
     max-width: 250px;
@@ -63,6 +72,30 @@ body, html {
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
+/* 뒤로가기 버튼 */
+.back-button {
+    position: fixed;         /* 화면에 고정 */
+    top: 20px;               /* 위쪽 여백 */
+    left: 20px;              /* 왼쪽 여백 */
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    font-family: 'ONE-Mobile-POP', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999; /* 다른 요소보다 위에 */
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
 
 .menu-button:hover {
     background-color: rgba(255, 240, 200, 0.95);
@@ -96,7 +129,7 @@ body, html {
 #play-bgm-btn {
     position: fixed;
     top: 10px;
-    left: 10px;
+    right: 10px;
     z-index: 1000;
     padding: 8px 12px;
     font-size: 14px;
@@ -107,8 +140,42 @@ body, html {
     cursor: pointer;
     user-select: none;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 #play-bgm-btn:hover {
     background-color: #666;
 }
+
+.two-sided-image-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.image-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.image-item {
+    text-align: center;
+    width: 200px;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.image-caption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #444;
+    font-family: 'ONE-Mobile-POP', sans-serif;
+}
+
