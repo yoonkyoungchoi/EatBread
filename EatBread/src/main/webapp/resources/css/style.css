@@ -303,3 +303,12 @@ body, html {
   background-color: #f57f17;
 }
 
+#gameMessage {
+  font-size: 1.5em;
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  white-space: pre-line;
+}
+

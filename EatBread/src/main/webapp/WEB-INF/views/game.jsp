@@ -22,7 +22,7 @@
 			  <img id="breadImage" src="${pageContext.request.contextPath}/resources/img/main.png" alt="빵 먹기 이미지" class="bread-animation" />
 			</div>
 
-			<div class="input-container">
+			<div class="input-container" style="display: none;">
 			  <input type="number" id="userGuess" min="0" placeholder="몇 개 먹었게?" class="guess-input" />
 			  <input type="text" id="nickname" placeholder="닉네임" class="nickname-input" />
 			  <button onclick="submitGuess()" class="submit-button">제출</button>
@@ -89,30 +89,31 @@
 	
 	function showImages() {
 		  if (currentIndex >= mixedImages.length) {
-		    
-			  // 모든 이미지 보여준 후 이미지 숨김 처리
 		    document.querySelector(".image-wrapper").style.display = "none";
+		    document.querySelector(".input-container").style.display = "flex"; // 정답 입력창 나타남
+		    
 		    return;
 		  }
 
-		  imgElem.classList.remove("bread-animation"); // 먼저 클래스 제거
-		  void imgElem.offsetWidth; // 강제 리플로우 (재생성 유도)
-		  imgElem.classList.add("bread-animation"); // 다시 추가해 애니메이션 적용
+		  imgElem.classList.remove("bread-animation");
+		  void imgElem.offsetWidth;
+		  imgElem.classList.add("bread-animation");
 
 		  imgElem.src = contextPath + "/resources/img/" + mixedImages[currentIndex];
 		  currentIndex++;
 
 		  setTimeout(showImages, Math.random() * 200 + 150);
-	}
+		}
+
 
 	window.onload = () => {
 		  startCountdown();
 		};
 
-		function startCountdown() {
+	   function startCountdown() {
 		  const countdownElem = document.getElementById("countdown");
 		  let count = 3;
-
+	
 		  const interval = setInterval(() => {
 		    if (count > 0) {
 		      countdownElem.textContent = count;
@@ -126,16 +127,17 @@
 		      loadImagesAndStart(); // 카운트 끝나고 이미지 시작
 		    }
 		  }, 1000);
-		}
+	    }
 
 
 		function submitGuess() {
 		    const userInput = parseInt(document.getElementById('userGuess').value);
 		    const nickname = document.getElementById('nickname').value.trim();
 		    const timeTaken = (Date.now() - startTime) / 1000;
+		    const gameMessage = document.getElementById('gameMessage');
 
 		    if (!nickname || isNaN(userInput)) {
-		        document.getElementById('gameMessage').innerText = '닉네임과 숫자를 정확히 입력해주세요';
+		        gameMessage.innerText = '닉네임과 숫자를 정확히 입력해주세요';
 		        return;
 		    }
 
@@ -152,21 +154,33 @@
 		    })
 		    .then(res => res.text())
 		    .then(data => {
+		        // 입력창, 버튼 숨기기
+		        document.getElementById('userGuess').style.display = 'none';
+		        document.getElementById('nickname').style.display = 'none';
+		        document.querySelector('.submit-button').style.display = 'none';
+
 		        if (data === "success") {
-		            if (userInput === actualCount) {
-		                document.getElementById('gameMessage').innerText = `정답입니다! (${actualCount}개) 결과가 저장되었습니다.`;
-		            } else {
-		                document.getElementById('gameMessage').innerText = `틀렸어요. 정답은 ${actualCount}개입니다. 결과가 저장되었습니다.`;
-		            }
+		        	if (userInput === actualCount) {
+		        	    gameMessage.innerHTML = `✅ 정답입니다! 결과가 저장되었습니다.<br>3초 뒤 메인 화면으로 이동합니다.`;
+		        	} else {
+		        	    gameMessage.innerHTML = `❌ 틀렸어요. 정답은 ${actualCount}개입니다.<br>결과가 저장되었습니다. 3초 뒤 메인 화면으로 이동합니다.`;
+		        	}
+
+
+		            // 3초 후 메인으로 이동
+		            setTimeout(() => {
+		                window.location.href = contextPath + "/";
+		            }, 3000);
 		        } else {
-		            document.getElementById('gameMessage').innerText = "결과 저장에 실패했습니다.";
+		            gameMessage.innerText = "결과 저장에 실패했습니다.";
 		        }
 		    })
 		    .catch(err => {
-		        document.getElementById('gameMessage').innerText = "서버 오류가 발생했습니다.";
+		        gameMessage.innerText = "서버 오류가 발생했습니다.";
 		        console.error(err);
 		    });
 		}
+
 
 </script>
 
