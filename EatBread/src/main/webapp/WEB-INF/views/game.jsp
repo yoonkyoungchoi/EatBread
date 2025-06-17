@@ -76,9 +76,6 @@
 
 			actualCount = mixedImages.filter(name => name.startsWith("eat")).length;
 
-			console.log("실제 eat 개수:", actualCount);
-			console.log("받은 이미지:", mixedImages);
-
 			startTime = Date.now();
 			setTimeout(showImages, 1000);
 		})
@@ -158,19 +155,19 @@
 		        document.getElementById('userGuess').style.display = 'none';
 		        document.getElementById('nickname').style.display = 'none';
 		        document.querySelector('.submit-button').style.display = 'none';
-
+		        
 		        if (data === "success") {
 		        	if (userInput === actualCount) {
 		        	    gameMessage.innerHTML = `✅ 정답입니다! 결과가 저장되었습니다.<br>3초 뒤 메인 화면으로 이동합니다.`;
 		        	} else {
-		        	    gameMessage.innerHTML = `❌ 틀렸어요. 정답은 ${actualCount}개입니다.<br>결과가 저장되었습니다. 3초 뒤 메인 화면으로 이동합니다.`;
+		        	    gameMessage.innerHTML = `❌ 틀렸어요. 정답은 `+ actualCount +`개입니다.<br>결과가 저장되었습니다. 3초 뒤 메인 화면으로 이동합니다.`;
 		        	}
 
 
 		            // 3초 후 메인으로 이동
 		            setTimeout(() => {
 		                window.location.href = contextPath + "/";
-		            }, 3000);
+		            }, 4000);
 		        } else {
 		            gameMessage.innerText = "결과 저장에 실패했습니다.";
 		        }

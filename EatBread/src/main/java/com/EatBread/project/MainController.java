@@ -1,17 +1,25 @@
 package com.EatBread.project;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.EatBread.project.mapper.MainMapper;
+import com.EatBread.project.mapper.VO.RankVO;
 
 @Controller
 public class MainController {
     
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+    
+    @Autowired
+	MainMapper mainMapper;
 
     @GetMapping("/")
     public String main(Locale locale, Model model) {
@@ -31,27 +39,20 @@ public class MainController {
         return "rule";
     }
     
-    @GetMapping("/name")
+    @GetMapping("/rank")
+    public String rank(Locale locale, Model model) {
+        logger.info("랭킹 접근. locale={}", locale);
+
+        List<RankVO> rankList = mainMapper.selectRank();
+        model.addAttribute("rankList", rankList);
+
+        return "rank"; // /WEB-INF/views/rank.jsp로 연결됨
+    }
+
+    
+    @GetMapping("/setting")
     public String name(Locale locale, Model model) {
-        logger.info("닉네임 입력 접근.", locale);
-        return "name";
-    }
-    
-    @GetMapping("/easyGame")
-    public String easyGame(Locale locale, Model model) {
-        logger.info("쉬운 모드 게임 접근.", locale);
-        return "easyGame";
-    }
-    
-    @GetMapping("/hardGame")
-    public String hardGame(Locale locale, Model model) {
-        logger.info("어려운 모드 게임 접근.", locale);
-        return "hardGame";
-    }
-    
-    @GetMapping("/gameMode")
-    public String gameMode(Locale locale, Model model) {
-        logger.info("게임 모드 선택 접근.", locale);
-        return "gameMode";
+        logger.info("화면 설정 진입.", locale);
+        return "setting";
     }
 }

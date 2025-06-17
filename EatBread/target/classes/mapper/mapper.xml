@@ -22,7 +22,14 @@
   
   <select id="selectRank" resultType="com.EatBread.project.mapper.VO.RankVO">
   	
-  	SELECT * FROM game_results ORDER BY time_taken, id
+  	SELECT 
+		  ROW_NUMBER() OVER (ORDER BY time_taken, id) AS ranking,
+		  id,
+		  nickname,
+		  time_taken,
+		  played_at
+		FROM game_results
+		ORDER BY time_taken, id;
   
   </select>
   

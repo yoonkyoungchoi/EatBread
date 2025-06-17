@@ -9,9 +9,13 @@
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> 
 	    <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://43.203.97.203:59541/EatBread?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Seoul" />
-	    <property name="username" value="yoon"></property> 
-	    <property name="password" value="1234!"></property>
+		<!-- <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://43.203.97.203:59541/EatBread?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Seoul" /> -->
+	    <property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/EatBread?serverTimezone=Asia/Seoul" />
+	    <!-- <property name="username" value="yoon"></property> 
+	    <property name="password" value="1234!"></property> -->
+	    
+	    <property name="username" value="root"></property> 
+	    <property name="password" value="umc!23"></property>
 	</bean>
 	
 	<bean id="datasource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

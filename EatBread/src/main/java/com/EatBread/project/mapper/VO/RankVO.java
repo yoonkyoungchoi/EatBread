@@ -2,6 +2,7 @@ package com.EatBread.project.mapper.VO;
 
 public class RankVO {
 	
+	private String ranking;
 	private Long id;
 	private String nickname;
 	private float timeTaken;
@@ -24,15 +25,21 @@ public class RankVO {
 	public void setTimeTaken(float timeTaken) {
 		this.timeTaken = timeTaken;
 	}
-	
+	public String getRanking() {
+		return ranking;
+	}
+	public void setRanking(String ranking) {
+		this.ranking = ranking;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RankVO [id=").append(id).append(", nickname=").append(nickname).append(", timeTaken=")
-				.append(timeTaken).append("]");
+		builder.append("RankVO [ranking=").append(ranking).append(", id=").append(id).append(", nickname=")
+				.append(nickname).append(", timeTaken=").append(timeTaken).append("]");
 		return builder.toString();
 	}
+
 	
-	
+
 
 }
