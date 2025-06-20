@@ -6,12 +6,14 @@
 	<title>너 빵 몇개 먹었어 ?! - 게임</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/breadIcon.ico">
-	<audio id="bgm" src="${pageContext.request.contextPath}/resources/audio/background.mp3" autoplay loop></audio>
+	
 </head>
 <body>
 
 	<div class="fullscreen-bg">
 		<button id="play-bgm-btn">음악 재생이 안될 때 클릭!</button>
+		<audio id="bgm" src="${pageContext.request.contextPath}/resources/audio/background.mp3" autoplay loop></audio>
+		
 		<button class="back-button" onclick="location.href='/'">홈화면</button>
 	
 		<div id="countdown" class="countdown-text"></div>
@@ -32,7 +34,11 @@
 		</div>
 	</div>
 
-</body>
+
+
+<script src="${pageContext.request.contextPath}/resources/js/bgm-settings.js"></script>
+
+
 <script>
 
 	const contextPath = "${pageContext.request.contextPath}";
@@ -180,5 +186,5 @@
 
 
 </script>
-
+</body>
 </html>

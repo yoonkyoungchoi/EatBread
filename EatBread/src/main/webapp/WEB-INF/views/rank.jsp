@@ -11,7 +11,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 100px;
+            margin-top: -200px;
         }
 
         .rank-entry {
@@ -68,6 +68,15 @@
             font-size: 14px;
             color: #444;
         }
+        
+        .ranking-title {
+		    font-size: 48px;
+		    font-weight: bold;
+		    color: #333;
+		    margin-bottom: 40px;
+		    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+		}
+		        
     </style>
 </head>
 <body>
@@ -79,8 +88,9 @@
 
         <button class="back-button" onclick="location.href='/'">홈화면</button>
         <button id="play-bgm-btn">음악 재생이 안될 때 클릭!</button>
-
+        
         <div class="ranking-container">
+		    <h1 class="ranking-title">🏆 랭킹</h1> 
 		    <c:forEach var="rank" items="${rankList}" varStatus="status">
 		        <c:if test="${not empty rank.ranking and rank.ranking <= 10}">
 		            <div class="rank-entry rank-${rank.ranking}">
@@ -89,10 +99,10 @@
 		        </c:if>
 		    </c:forEach>
 		</div>
-
     </div>
-
-    <script>
+    
+   <script>
+    
         const bgm = document.getElementById('bgm');
         const playBgmBtn = document.getElementById('play-bgm-btn');
 
@@ -107,4 +117,5 @@
     </script>
 
 </body>
+<script src="${pageContext.request.contextPath}/resources/js/bgm-settings.js"></script>
 </html>

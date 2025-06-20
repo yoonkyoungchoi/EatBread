@@ -2,35 +2,68 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.EatBread.project.mapper.MainMapper">
-  	
-  	<insert id="insertGameResult" parameterType="com.EatBread.project.mapper.VO.GameInsertVO">
-	    INSERT INTO game_results (
-	      nickname,
-	      guess_count,
-	      actual_count,
-	      time_taken,
-	      played_at
-	    ) VALUES (
-	      #{nickname},
-	      #{guessCount},
-	      #{actualCount},
-	      #{timeTaken},
-	      NOW()
-	    )
-  </insert>
-  
-  <select id="selectRank" resultType="com.EatBread.project.mapper.VO.RankVO">
-  	
-  	SELECT 
-		  ROW_NUMBER() OVER (ORDER BY time_taken, id) AS ranking,
-		  id,
-		  nickname,
-		  time_taken,
-		  played_at
+<mapper namespace="com.EatBread.project.mapper.MainMapper">
+
+	<insert id="insertGameResult"
+		parameterType="com.EatBread.project.mapper.VO.GameInsertVO">
+		INSERT INTO game_results (
+		nickname,
+		guess_count,
+		actual_count,
+		time_taken,
+		played_at
+		) VALUES (
+		#{nickname},
+		#{guessCount},
+		#{actualCount},
+		#{timeTaken},
+		NOW()
+		)
+	</insert>
+
+	<select id="selectRank"
+		resultType="com.EatBread.project.mapper.VO.RankVO">
+
+		SELECT
+		ROW_NUMBER() OVER (ORDER BY time_taken, id) AS ranking,
+		id,
+		nickname,
+		time_taken,
+		played_at
 		FROM game_results
 		ORDER BY time_taken, id;
-  
-  </select>
-  
+
+	</select>
+
+	<select id="selectNotice"
+		resultType="com.EatBread.project.mapper.VO.NoticeVO">
+		SELECT * FROM guestbook ORDER BY created_at DESC
+	</select>
+
+	<select id="selectById" resultType="Integer">
+		SELECT COUNT(1) FROM guestbook WHERE id = #{id} AND password = #{password}
+	</select>
+
+	<insert id="insertNotice" parameterType="com.EatBread.project.mapper.VO.NoticeVO">
+		INSERT INTO guestbook (username, message, password)
+		VALUES (#{username}, #{message}, #{password})
+	</insert>
+
+	<update id="updateNotice" parameterType="com.EatBread.project.mapper.VO.NoticeVO">
+		UPDATE guestbook
+		SET message = #{message}
+		WHERE id = #{id} AND password = #{password}
+	</update>
+	
+	<update id="updateNoticeAdmin">
+		UPDATE guestbook
+		SET message = #{message}
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteNotice">
+		DELETE FROM guestbook
+		WHERE id = #{id} AND password = #{password}
+	</delete>
+
 </mapper>

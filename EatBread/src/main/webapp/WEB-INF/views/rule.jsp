@@ -6,7 +6,7 @@
 	<title>너 빵 몇개 먹었어 ?!</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/breadIcon.ico">
-	<audio id="bgm" src="${pageContext.request.contextPath}/resources/audio/background.mp3" autoplay loop></audio>
+
 </head>
 <body>
 	
@@ -14,6 +14,7 @@
 		
 		<button class="back-button" onclick="location.href='/'">홈화면</button>
 		<button id="play-bgm-btn">음악 재생이 안될 때 클릭!</button>
+		<audio id="bgm" src="${pageContext.request.contextPath}/resources/audio/background.mp3" autoplay loop></audio>
 		
 		<div class="center-container2">
 			<h1> ★ 게임 방법 ★ </h1> <br>
@@ -53,7 +54,7 @@
 			<button class="menu-button" onclick="location.href='/game'">게임 하기</button>
 		</div>
 	</div>
-</body>
+
 
 <script>
 
@@ -70,4 +71,7 @@
 	});
 
 </script>
+</body>
+
+<script src="${pageContext.request.contextPath}/resources/js/bgm-setting.js"></script>
 </html>

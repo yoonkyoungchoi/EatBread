@@ -6,6 +6,7 @@
     <title>너 빵 몇개 먹었어 ?!</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/breadIcon.ico">
+    
     <style>
         /* 팝업 배경 오버레이 */
         #popupOverlay {
@@ -85,8 +86,7 @@
 </head>
 <body>
 
-    <!-- 배경 음악 -->
-    <audio id="bgm" src="${pageContext.request.contextPath}/resources/audio/background.mp3" autoplay loop></audio>
+    
 
     <!-- 팝업 오버레이 및 팝업 컨테이너 -->
     <div id="popupOverlay"></div>
@@ -96,6 +96,9 @@
 
         <!-- 음악 재생 버튼 -->
         <button id="play-bgm-btn">음악 재생이 안될 때 클릭!</button>
+        
+        <!-- 배경 음악 -->
+    	<audio id="bgm" src="${pageContext.request.contextPath}/resources/audio/background.mp3" autoplay loop></audio>
 
         <!-- 로고 및 버튼 -->
         <div class="center-container">
@@ -106,6 +109,7 @@
                 <button class="menu-button" onclick="location.href='/rule'">게임방법</button>
                 <button class="menu-button" onclick="location.href='/game'">게임시작</button>
                 <button class="menu-button" onclick="location.href='/rank'">랭킹</button>
+                <button class="menu-button" onclick="location.href='/notice'">방명록</button>
                 <button class="menu-button" onclick="openSettingPopup()">설정</button>
             </div>
 
